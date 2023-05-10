@@ -35,6 +35,7 @@ double mean(vector<double> v) {
 }
 
 double median(vector<double> v) {
+    sort(v);
     size_t vSize = v.size();
     double middleIndex = vSize / 2.0;
     // check if odd
@@ -43,19 +44,36 @@ double median(vector<double> v) {
     } else {
         return mean(v);
     }
-    
 }
 
 double mode(vector<double> v) {
-    return 70.00;
+    sort(v);
+    double count = 1;
+    double maxFrequency = 1;
+    double lesserMode = v[0];
+    
+    for (int i = 0; i < v.size() - 1; i++) {
+        if (v[i] == v[i+1]) {
+            count++;
+            if (count > maxFrequency) {
+                maxFrequency = count;
+                lesserMode = v[i];
+            }
+        } else {
+            count = 1;
+        }
+    }
+    return lesserMode;
 }
 
 double min(vector<double> v) {
-  assert(false);
+    sort(v);
+    return v[0];
 }
 
 double max(vector<double> v) {
-  assert(false);
+    sort(v);
+    return v[v.size()-1];
 }
 
 double stdev(vector<double> v) {

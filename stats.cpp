@@ -37,12 +37,13 @@ double mean(vector<double> v) {
 double median(vector<double> v) {
     sort(v);
     size_t vSize = v.size();
-    double middleIndex = vSize / 2.0;
+    double middleIndex = v.size() / 2.0;
+    
     // check if odd
     if (vSize % 2 != 0) {
-        return v[middleIndex];
+        return v[floor(middleIndex)];
     } else {
-        return mean(v);
+        return (v[middleIndex] + v[middleIndex-1]) / 2.0;
     }
 }
 
@@ -77,7 +78,18 @@ double max(vector<double> v) {
 }
 
 double stdev(vector<double> v) {
-  assert(false);
+    vector<double> meanDifferences;
+    double vMean = mean(v);
+    for (int i = 0; i < v.size(); i++) {
+        double meanDifference = v[i] - vMean;
+        double squaredValue = meanDifference * meanDifference;
+        meanDifferences.push_back(squaredValue);
+    }
+    
+    double differencesSum = sum(meanDifferences);
+    double correction = (1.0 / (v.size() - 1.0));
+    double underRoot = differencesSum * correction;
+    return sqrt(underRoot);
 }
 
 double percentile(vector<double> v, double p) {

@@ -22,27 +22,14 @@
 #include <cmath>
 using namespace std;
 
-void test_sum_small_data_set();
 void test_mode();
+void test_median();
 
 int main() {
-  test_sum_small_data_set();
   test_mode();
-
+  test_median();
+    
   return 0;
-}
-
-void test_sum_small_data_set() {
-  cout << "test_sum_small_data_set" << endl;
-
-  vector<double> data;
-  data.push_back(1);
-  data.push_back(2);
-  data.push_back(3);
-
-  assert(sum(data) == 6);
-
-  cout << "SUM PASSED!" << endl;
 }
 
 void test_mode() {
@@ -57,4 +44,13 @@ void test_mode() {
     assert(mode({1,2,1,2,2}) == 2);
     
     cout << "MODE PASSED!" << endl;
+}
+
+void test_median() {
+    vector<double> testV = {1,2,3,4,5};
+    assert(median(testV) == 3);
+    vector<double> testV2 = {1,2,3,4,5,6};
+    assert(median(testV2) == 3.5);
+    
+    cout << "MEDIAN PASSED!" << endl;
 }

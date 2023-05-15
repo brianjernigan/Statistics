@@ -28,6 +28,8 @@ void test_median();
 int main() {
   test_mode();
   test_median();
+
+  cout << "Testing GitHub compatibility" << endl;
     
   return 0;
 }
